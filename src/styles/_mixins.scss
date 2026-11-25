@@ -1,0 +1,69 @@
+@use "sass:map";
+@use "variables" as *;
+
+$breakpoints: (
+  "small": (
+    max-width: 599px,
+  ),
+  "medium": (
+    min-width: 600px,
+    max-width: 899px,
+  ),
+  "large": (
+    min-width: 900px,
+  ),
+);
+
+@mixin respond-to($breakpoint) {
+  $raw-query: map.get($breakpoints, $breakpoint);
+
+  @if $raw-query {
+    $query: "";
+    @each $prop, $value in $raw-query {
+      @if $query == "" {
+        $query: "(#{$prop}: #{$value})";
+      } @else {
+        $query: "#{$query} and (#{$prop}: #{$value})";
+      }
+    }
+
+    @media #{$query} {
+      @content;
+    }
+  } @else {
+    @error "No value found for `#{$breakpoint}`. Please make sure it is defined in `$breakpoints` map.";
+  }
+}
+@mixin button($bg-color, $text-color) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $bg-color;
+  color: $text-color;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: $radius-sm;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: $transition-base;
+
+  &:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+    box-shadow: 0 6px 18px rgba($bg-color, 0.35);
+  }
+}
+
+@mixin container {
+  width: 100%;
+  max-width: $container-max;
+  margin-inline: auto;
+  padding-inline: $gutter-mobile;
+
+  @include respond-to("large") {
+    padding-inline: $gutter-desktop;
+  }
+}

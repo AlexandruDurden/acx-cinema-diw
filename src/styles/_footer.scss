@@ -1,0 +1,142 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+footer.footer {
+  background-color: $footer-bg;
+  border-top: 1px solid $border-color;
+  padding-block: 36px 32px;
+
+  @include respond-to("large") {
+    padding-block: 48px 36px;
+  }
+
+  .footer__inner {
+    @include container;
+  }
+
+  .footer__top {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid $border-color;
+
+    @include respond-to("large") {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 36px;
+    }
+  }
+
+  .footer__brand-title {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .footer__tagline {
+    font-size: 11px;
+    color: $text-muted;
+  }
+
+  .footer__cols {
+    display: flex;
+    gap: 48px;
+
+    @include respond-to("large") {
+      gap: 72px;
+    }
+  }
+
+  .footer__col-title {
+    color: $primary-color;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .footer__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    a {
+      font-size: 11px;
+      color: $text-muted;
+      transition: $transition-base;
+
+      &:hover {
+        color: $text-color;
+      }
+    }
+  }
+
+  .footer__bottom {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    @include respond-to("large") {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 22px;
+    }
+  }
+
+  .footer__copy {
+    font-size: 10px;
+    color: $text-dim;
+  }
+
+  .footer__socials {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+
+    @include respond-to("large") {
+      justify-content: flex-end;
+    }
+  }
+
+  .footer__social-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $text-muted;
+    transition: $transition-base;
+
+    &:hover {
+      color: $primary-color;
+
+      .footer__social-circle {
+        border-color: $primary-color;
+        color: $primary-color;
+      }
+    }
+  }
+
+  .footer__social-circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid #444444;
+    display: grid;
+    place-items: center;
+    font-size: 11px;
+    color: $text-color;
+    transition: $transition-base;
+  }
+}

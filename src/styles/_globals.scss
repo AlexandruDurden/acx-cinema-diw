@@ -1,0 +1,84 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: $bg-color;
+  color: $text-color;
+  font-family: $font-stack;
+  font-size: $font-size-base;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@each $name, $color in $theme-colors {
+  .text-#{$name} {
+    color: $color;
+  }
+}
+.btn-primary {
+  @include button($primary-color, $secondary-color);
+}
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  &__boxes {
+    display: inline-flex;
+    gap: 3px;
+  }
+
+  &__box {
+    width: 18px;
+    height: 18px;
+    background-color: $secondary-color;
+    color: $bg-color;
+    font-size: 12px;
+    display: inline-grid;
+    place-items: center;
+    border-radius: 2px;
+
+    &--accent {
+      background-color: $primary-color;
+      color: $secondary-color;
+      width: 30px;
+      height: 30px;
+      font-size: 18px;
+    }
+  }
+
+  &--hero {
+    gap: 10px;
+    font-size: 28px;
+    letter-spacing: 0.06em;
+
+    .brand-mark__boxes {
+      gap: 6px;
+    }
+  }
+}
